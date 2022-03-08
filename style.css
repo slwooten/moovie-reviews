@@ -1,0 +1,10 @@
+.container-fluid {
+    display: flex;
+    position: sticky;
+    flex-direction: row;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: flex-end;
+}

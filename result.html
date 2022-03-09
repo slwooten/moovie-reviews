@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Search Results Page</title>
 </head>
 <body>
-    
+    <nav>
+        <div class="nav-container">
+          <p id="nav-title">Navbar</p>
+            <form class="nav-search">
+              <input id="searchInput" type="text" placeholder="Search">
+              <button id="submitBtn" type="submit">Search</button>
+            </form>
+        </div>
+      </nav>
+    <div id='main-content'>
+        <div id='movie-results'></div>
+        <div id='youtube-results'></div>
+    </div>
+
+    <script src='assets/script.js'></script>
 </body>
 </html>

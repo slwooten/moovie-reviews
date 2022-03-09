@@ -3,7 +3,7 @@ var yelpApi = 'v2SPvG9GB-qDSzqLNrXWbM5SikSr65C-F1MoorG99B_VnQDnOpyVPGyhwK4eDeUOo
 console.log(yelpUrl);
 
 var getYelpApi = function() {
-    var yelpUrl = 'https://api.yelp.com/v3/businesses/search';
+    var yelpUrl = 'https://api.yelp.com/v3  /businesses/search';
 
     fetch(yelpUrl)
         .then(function (response) {

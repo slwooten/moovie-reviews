@@ -9,19 +9,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
   <title>Document</title>
 </head>
 <body>
   <nav>
       <div class="nav-container">
         <p id="nav-title">MOVIE REVIEWS</p>
-        <form class="nav-search">
+        <!-- this search form will only be in result.html -->
+        <!-- <form class="search">
           <input id="searchInput" type="text" placeholder="Search" size="50px" autocomplete="off">
           <button id="submitBtn" type="submit"><i class="fa fa-search"></i></button>
-        </form>
+        </form> -->
       </div>
     </nav>
-  <article id="home"></article>
+  <div class="search-container">
+    <image id="search-background" src="./assets/images/jason-dent-SnXIF8_2oPw-unsplash.jpg" width="1000px"></image>
+    <form class="search" id="jumbo-search">
+      <input class="input" id="home-search" type="text" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" size="70px" autocomplete="off">
+      <button id="home-submit" type="submit">SEARCH</button>
+    </form>
+  </div>
   <script src="assets/script.js"></script>
 </body>
 </html>

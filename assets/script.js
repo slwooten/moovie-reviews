@@ -14,270 +14,66 @@ console.log('Here we are');
 
 
 // function that fetches youtube api with results based on search keyword and fetches youtube embed api //
-var getYoutubeApi = function (event) {
-    event.preventDefault();
+// var getYoutubeApi = function (event) {
+//     event.preventDefault();
 
-    var inputVal = `${inputEl.value.trim()}+movie+trailer`;
-    var youtubeUrl = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=' + inputVal + '&key=' + googleApiKey;
+//     var inputVal = `${inputEl.value.trim()}+movie+trailer`;
+//     var youtubeUrl = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=' + inputVal + '&key=' + googleApiKey;
 
-    fetch(youtubeUrl)
-        .then(function (response) {
-            return response.json();
+//     fetch(youtubeUrl)
+//         .then(function (response) {
+//             return response.json();
 
-        })
-        .then(function (data) {
-            console.log(data);
+//         })
+//         .then(function (data) {
+//             console.log(data);
 
-            // grabs the youtube video's id and uses it in the next fetch url //
-            var ytId = data.items[0].id.videoId;
-            var embedUrl = 'https://www.youtube.com/oembed?url=https%3A//youtube.com/watch%3Fv%3D' + ytId + '&format=json';
+//             // grabs the youtube video's id and uses it in the next fetch url //
+//             var ytId = data.items[0].id.videoId;
+//             var embedUrl = 'https://www.youtube.com/oembed?url=https%3A//youtube.com/watch%3Fv%3D' + ytId + '&format=json';
 
-            //  saves id to local storage //
-            localStorage.setItem('youtube vid id', ytId);
+//             //  saves id to local storage //
+//             localStorage.setItem('youtube vid id', ytId);
 
-            // fetches youtube video embed api //
-            fetch(embedUrl)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    console.log(data);
+//             // fetches youtube video embed api //
+//             fetch(embedUrl)
+//                 .then(function (response) {
+//                     return response.json();
+//                 })
+//                 .then(function (data) {
+//                     console.log(data);
 
-                    // creates element for youtube video title //
-                    var trailerTitle = document.createElement('h3');
+//                     // creates element for youtube video title //
+//                     var trailerTitle = document.createElement('h3');
+
+//                     // sets the text content to the youtube video title //
+//                     trailerTitle.textContent = data.title;
+
+//                     // places the youtube video title on the page and embeds the video itself //
+//                     movieResults.appendChild(trailerTitle);
+//                     movieResults.innerHTML += data.html;
+//                 });
+//         })
+
+// }
+
+
+
+var getYoutubeApi = function() {
+    var data = {"title":"Official Trailer: Cars (2006)","author_name":"N.B.","author_url":"https://www.youtube.com/c/TheFirewhirl","type":"video","height":113,"width":200,"version":"1.0","provider_name":"YouTube","provider_url":"https://www.youtube.com/","thumbnail_height":360,"thumbnail_width":480,"thumbnail_url":"https://i.ytimg.com/vi/SbXIj2T-_uk/hqdefault.jpg","html":"\u003ciframe width=\u0022200\u0022 height=\u0022113\u0022 src=\u0022https://www.youtube.com/embed/SbXIj2T-_uk?feature=oembed\u0022 frameborder=\u00220\u0022 allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\u0022 allowfullscreen\u003e\u003c/iframe\u003e"};
+
+    var trailerTitle = document.createElement('h3');
+
+                    trailerTitle.classList.add('yt-title');
 
                     // sets the text content to the youtube video title //
                     trailerTitle.textContent = data.title;
 
                     // places the youtube video title on the page and embeds the video itself //
-                    movieResults.appendChild(trailerTitle);
-                    movieResults.innerHTML += data.html;
-                });
-        })
+                    youtubeResults.appendChild(trailerTitle);
+                    youtubeResults.innerHTML += data.html;
 
-}
-
-
-
-// var getYoutubeApi = function () {
-//     var inputVal = `${inputEl.value.trim()}+movie+trailer`;
-//     console.log(inputVal);
-//     var data = {
-//         "kind": "youtube#searchListResponse",
-//         "etag": "lFPOdNm-WKxA4qBZ5i4LLyo5O2g",
-//         "nextPageToken": "CAUQAA",
-//         "regionCode": "US",
-//         "pageInfo": {
-//             "totalResults": 1000000,
-//             "resultsPerPage": 5
-//         },
-//         "items": [
-//             {
-//                 "kind": "youtube#searchResult",
-//                 "etag": "0Wb8XWWNU9RpU_bH4GrbElc_ZoQ",
-//                 "id": {
-//                     "kind": "youtube#video",
-//                     "videoId": "U_e20A9A_sE"
-//                 },
-//                 "snippet": {
-//                     "publishedAt": "2022-03-10T03:26:46Z",
-//                     "channelId": "UCyLicD9UtfSo5t5_wPT7WHQ",
-//                     "title": "Flatbed Trailer Tractor Massive Pothole Car Rescue - Cars vs Deep Water vs Bump - BeamNG",
-//                     "description": "Flatbed Trailer Tractor Massive Pothole Car Rescue - Cars vs Deep Water vs Bump - BeamNG About the game: The video depicts ...",
-//                     "thumbnails": {
-//                         "default": {
-//                             "url": "https://i.ytimg.com/vi/U_e20A9A_sE/default_live.jpg",
-//                             "width": 120,
-//                             "height": 90
-//                         },
-//                         "medium": {
-//                             "url": "https://i.ytimg.com/vi/U_e20A9A_sE/mqdefault_live.jpg",
-//                             "width": 320,
-//                             "height": 180
-//                         },
-//                         "high": {
-//                             "url": "https://i.ytimg.com/vi/U_e20A9A_sE/hqdefault_live.jpg",
-//                             "width": 480,
-//                             "height": 360
-//                         }
-//                     },
-//                     "channelTitle": "BeamNG Speed",
-//                     "liveBroadcastContent": "live",
-//                     "publishTime": "2022-03-10T03:26:46Z"
-//                 }
-//             },
-//             {
-//                 "kind": "youtube#searchResult",
-//                 "etag": "eZDkMBq6MxrItMSibHlUW1hHUao",
-//                 "id": {
-//                     "kind": "youtube#video",
-//                     "videoId": "4FyngUJieiU"
-//                 },
-//                 "snippet": {
-//                     "publishedAt": "2022-03-09T11:12:10Z",
-//                     "channelId": "UCenqyUhFu76XxAeYppxCfQQ",
-//                     "title": "Race Crazy Cars Monster Trucks McQueen &amp; Friends Mater The King Miss Fritter Crazy Track 8",
-//                     "description": "Race Crazy Cars Monster Trucks McQueen & Friends Mater The King Miss Fritter Crazy Track 8 #cars #mcqueen #crazycars ...",
-//                     "thumbnails": {
-//                         "default": {
-//                             "url": "https://i.ytimg.com/vi/4FyngUJieiU/default_live.jpg",
-//                             "width": 120,
-//                             "height": 90
-//                         },
-//                         "medium": {
-//                             "url": "https://i.ytimg.com/vi/4FyngUJieiU/mqdefault_live.jpg",
-//                             "width": 320,
-//                             "height": 180
-//                         },
-//                         "high": {
-//                             "url": "https://i.ytimg.com/vi/4FyngUJieiU/hqdefault_live.jpg",
-//                             "width": 480,
-//                             "height": 360
-//                         }
-//                     },
-//                     "channelTitle": "Crazy Cars",
-//                     "liveBroadcastContent": "live",
-//                     "publishTime": "2022-03-09T11:12:10Z"
-//                 }
-//             },
-//             {
-//                 "kind": "youtube#searchResult",
-//                 "etag": "pUkeQBmpSzj6BXDMPfWSMW8K06A",
-//                 "id": {
-//                     "kind": "youtube#video",
-//                     "videoId": "fdGWRq1dVBA"
-//                 },
-//                 "snippet": {
-//                     "publishedAt": "2021-09-05T04:00:08Z",
-//                     "channelId": "UC_VtrptObkqqp9tp3jycINA",
-//                     "title": "Best of Lightning McQueen | Pixar Cars",
-//                     "description": "Kachow! It's Lightning McQueen day and we are excited to share some of our favorite LMQ moments with you! What's your favorite ...",
-//                     "thumbnails": {
-//                         "default": {
-//                             "url": "https://i.ytimg.com/vi/fdGWRq1dVBA/default.jpg",
-//                             "width": 120,
-//                             "height": 90
-//                         },
-//                         "medium": {
-//                             "url": "https://i.ytimg.com/vi/fdGWRq1dVBA/mqdefault.jpg",
-//                             "width": 320,
-//                             "height": 180
-//                         },
-//                         "high": {
-//                             "url": "https://i.ytimg.com/vi/fdGWRq1dVBA/hqdefault.jpg",
-//                             "width": 480,
-//                             "height": 360
-//                         }
-//                     },
-//                     "channelTitle": "Pixar Cars",
-//                     "liveBroadcastContent": "none",
-//                     "publishTime": "2021-09-05T04:00:08Z"
-//                 }
-//             },
-//             {
-//                 "kind": "youtube#searchResult",
-//                 "etag": "5K14ZRO_rajYRSdNtuTFbbbjlkQ",
-//                 "id": {
-//                     "kind": "youtube#video",
-//                     "videoId": "bTMFeQT4b20"
-//                 },
-//                 "snippet": {
-//                     "publishedAt": "2022-03-10T02:14:42Z",
-//                     "channelId": "UCyLicD9UtfSo5t5_wPT7WHQ",
-//                     "title": "Cars vs deep water - Beamng drive",
-//                     "description": "Cars vs deep water - Beamng drive About the game: The video depicts the cars encountering obstacles such as Giant Pit, Giant ...",
-//                     "thumbnails": {
-//                         "default": {
-//                             "url": "https://i.ytimg.com/vi/bTMFeQT4b20/default_live.jpg",
-//                             "width": 120,
-//                             "height": 90
-//                         },
-//                         "medium": {
-//                             "url": "https://i.ytimg.com/vi/bTMFeQT4b20/mqdefault_live.jpg",
-//                             "width": 320,
-//                             "height": 180
-//                         },
-//                         "high": {
-//                             "url": "https://i.ytimg.com/vi/bTMFeQT4b20/hqdefault_live.jpg",
-//                             "width": 480,
-//                             "height": 360
-//                         }
-//                     },
-//                     "channelTitle": "BeamNG Speed",
-//                     "liveBroadcastContent": "live",
-//                     "publishTime": "2022-03-10T02:14:42Z"
-//                 }
-//             },
-//             {
-//                 "kind": "youtube#searchResult",
-//                 "etag": "t5XZvzghSeh-AiCfcLcHX34RGbE",
-//                 "id": {
-//                     "kind": "youtube#video",
-//                     "videoId": "EsdyiNQgmIE"
-//                 },
-//                 "snippet": {
-//                     "publishedAt": "2019-12-24T11:30:00Z",
-//                     "channelId": "UCVEDZVtA5NUtjxSXHjtvkag",
-//                     "title": "Toys from Cars 3 with Speaking Lightning McQueen",
-//                     "description": "Toys from Cars 3 with Lightning McQueen for Kids. Hi Parents. This video is supposed to review and show the toys functions in an ...",
-//                     "thumbnails": {
-//                         "default": {
-//                             "url": "https://i.ytimg.com/vi/EsdyiNQgmIE/default.jpg",
-//                             "width": 120,
-//                             "height": 90
-//                         },
-//                         "medium": {
-//                             "url": "https://i.ytimg.com/vi/EsdyiNQgmIE/mqdefault.jpg",
-//                             "width": 320,
-//                             "height": 180
-//                         },
-//                         "high": {
-//                             "url": "https://i.ytimg.com/vi/EsdyiNQgmIE/hqdefault.jpg",
-//                             "width": 480,
-//                             "height": 360
-//                         }
-//                     },
-//                     "channelTitle": "Kinder Spielzeug Kanal",
-//                     "liveBroadcastContent": "none",
-//                     "publishTime": "2019-12-24T11:30:00Z"
-//                 }
-//             }
-//         ]
-//     }
-//     var ytTitleOne = document.createElement('h3');
-//     var ytTitleTwo = document.createElement('h3');
-//     var ytThumbnailOne = document.createElement('img');
-//     var ytThumbnailTwo = document.createElement('img');
-
-//     // adds classes to tags so we can style with css //
-//     ytTitleOne.classList.add('youtube-title');
-//     ytTitleTwo.classList.add('youtube-title');
-//     ytThumbnailOne.classList.add('youtube-thumbnail');
-//     ytThumbnailTwo.classList.add('youtube-nail');
-
-
-//     // selects information we need like titles and thumbnail images //
-//     ytTitleOne.textContent = data.items[0].snippet.title;
-//     ytThumbnailOne.src = data.items[0].snippet.thumbnails.medium.url;
-//     ytTitleTwo.textContent = data.items[1].snippet.title;
-//     ytThumbnailTwo.src = data.items[1].snippet.thumbnails.medium.url;
-//     var ytId = data.items[0].id.videoId 
-
-//     // appends information to page //
-//     youtubeResults.appendChild(ytTitleOne);
-//     youtubeResults.appendChild(ytThumbnailOne);
-//     youtubeResults.appendChild(ytTitleTwo);
-//     youtubeResults.appendChild(ytThumbnailTwo);
-
-//     // sets information to local storage //
-//     localStorage.setItem('titleOne', data.items[0].snippet.title);
-//     localStorage.setItem('thumbnailOne', data.items[0].snippet.thumbnails.medium.url);
-//     localStorage.setItem('titleTwo', data.items[1].snippet.title);
-//     localStorage.setItem('thumbnailTwo', data.items[1].snippet.thumbnails.medium.url);
-
-
-//     console.log('event listener working');
-// }
+};
 
 
 
@@ -324,6 +120,16 @@ var getMovieApi = function (event) {
             movieResults.appendChild(movieRating);
             movieResults.appendChild(tomatoRating);
             movieResults.appendChild(moviePlot);
+
+
+            localStorage.setItem('inputVal', inputVal);
+            var getSearchHistory = localStorage.getItem('inputVal');
+
+            var searchHistory = document.createElement('h4');
+
+            searchHistory.textContent = getSearchHistory;
+
+            movieResults.appendChild(searchHistory);
 
             console.log('its working again');
         })

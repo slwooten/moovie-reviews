@@ -5,6 +5,7 @@ var searchBtn = document.getElementById("submitBtn");
 var youtubeResults = document.getElementById('youtube-results');
 var movieResults = document.getElementById('movie-results');
 var mainContent = document.getElementById('main-content');
+var homeSubmit = document.getElementById('home-submit')
 
 mainContent.style.padding = '105px 30px 30px 30px';
 
@@ -297,3 +298,6 @@ var getMovieApi = function (event) {
 // gets api when search button is clicked //
 searchBtn.addEventListener('click', getYoutubeApi);
 searchBtn.addEventListener('click', getMovieApi);
+
+
+

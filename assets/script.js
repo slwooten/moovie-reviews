@@ -6,11 +6,23 @@ var homeSearchBtn = document.getElementById('home-submit');
 var youtubeResults = document.getElementById('youtube-results');
 var movieResults = document.getElementById('movie-results');
 var mainContent = document.getElementById('main-content');
+var homeSearchEl = document.getElementById('home-search');
+var searchHistoryContainer = document.getElementById('search-history');
 
+var inputVal = inputEl.value.trim();
 
 mainContent.style.padding = '105px 30px 30px 30px';
 
 console.log('Here we are');
+
+// var homeSearchVal = homeSearchEl.value.trim();
+// localStorage.setItem(homeSearchVal);
+
+// var screenChange = function() {
+//     window.location.href = 'file:///Users/swoot14247/Bootcamp/Projects/travel-food-review/result.html';
+// }
+
+
 
 
 // function that fetches youtube api with results based on search keyword and fetches youtube embed api //
@@ -60,6 +72,8 @@ console.log('Here we are');
 
 
 var getYoutubeApi = function() {
+
+
     var data = {"title":"Official Trailer: Cars (2006)","author_name":"N.B.","author_url":"https://www.youtube.com/c/TheFirewhirl","type":"video","height":113,"width":200,"version":"1.0","provider_name":"YouTube","provider_url":"https://www.youtube.com/","thumbnail_height":360,"thumbnail_width":480,"thumbnail_url":"https://i.ytimg.com/vi/SbXIj2T-_uk/hqdefault.jpg","html":"\u003ciframe width=\u0022200\u0022 height=\u0022113\u0022 src=\u0022https://www.youtube.com/embed/SbXIj2T-_uk?feature=oembed\u0022 frameborder=\u00220\u0022 allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\u0022 allowfullscreen\u003e\u003c/iframe\u003e"};
 
     var trailerTitle = document.createElement('h3');
@@ -80,8 +94,7 @@ var getYoutubeApi = function() {
 // function for fetching movie by title and providing information about it //
 
 // function for fetching the omdb api url //
-var getMovieApi = function (event) {
-    event.preventDefault();
+var getMovieApi = function () {
 
     var inputVal = inputEl.value.trim();
     var movieUrl = 'http://www.omdbapi.com/?apikey=' + movieApiKey + '&t=' + inputVal;
@@ -111,7 +124,13 @@ var getMovieApi = function (event) {
             movieTitle.textContent = data.Title;
             movieYear.textContent = 'Release year: ' + data.Year;
             movieRating.textContent = 'IMDb rating: ' + data.imdbRating + ' / 10';
-            tomatoRating.textContent = 'Rotten Tomatoes: ' + data.Ratings[1].Value;
+
+            // if (data.Ratings[1].Value == 'undefined') {
+            //     tomatoRating.textContent = 'Rotten Tomatoes: n/a';
+            // } else {
+            //     tomatoRating.textContent = 'Rotten Tomatoes: ' + data.Ratings[1].Value;
+            // }
+            
             moviePlot.textContent = 'Description: ' + data.Plot;
 
             // appends info to the page //
@@ -125,16 +144,24 @@ var getMovieApi = function (event) {
             localStorage.setItem('inputVal', inputVal);
             var getSearchHistory = localStorage.getItem('inputVal');
 
-            var searchHistory = document.createElement('h4');
+            var searchHistory = document.createElement('button');
 
             searchHistory.textContent = getSearchHistory;
 
-            movieResults.appendChild(searchHistory);
+            searchHistoryContainer.appendChild(searchHistory);
 
-            console.log('its working again');
+        
         })
 }
 
-// gets api when search button is clicked //
-searchBtn.addEventListener('click', getYoutubeApi);
-searchBtn.addEventListener('click', getMovieApi);
+var getApis = function (event) {
+    event.preventDefault();
+
+    movieResults.innerHTML = '';
+    youtubeResults.innerHTML = '';
+
+    getMovieApi();
+    getYoutubeApi();
+}
+// gets apis when search button is clicked //
+searchBtn.addEventListener('click', getApis);

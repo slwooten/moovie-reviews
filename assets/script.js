@@ -1,6 +1,7 @@
 var googleApiKey = 'AIzaSyBpE0pMIOHN0AVIFKRDGwybxT18bDe3W-A';
 var movieApiKey = '302293ba';
 var inputEl = document.getElementById('searchInput');
+var inputHomeEl = document.getElementById('home-search');
 var searchBtn = document.getElementById("submitBtn");
 var homeSearchBtn = document.getElementById('home-submit');
 var youtubeResults = document.getElementById('youtube-results');
@@ -123,14 +124,7 @@ var getMovieApi = function () {
             // selects information needed from fetch request //
             movieTitle.textContent = data.Title;
             movieYear.textContent = 'Release year: ' + data.Year;
-            movieRating.textContent = 'IMDb rating: ' + data.imdbRating + ' / 10';
-
-            // if (data.Ratings[1].Value == 'undefined') {
-            //     tomatoRating.textContent = 'Rotten Tomatoes: n/a';
-            // } else {
-            //     tomatoRating.textContent = 'Rotten Tomatoes: ' + data.Ratings[1].Value;
-            // }
-            
+            movieRating.textContent = 'IMDb rating: ' + data.imdbRating + ' / 10';    
             moviePlot.textContent = 'Description: ' + data.Plot;
 
             // appends info to the page //
@@ -141,6 +135,7 @@ var getMovieApi = function () {
             movieResults.appendChild(moviePlot);
 
 
+            localStorage.setItem('moviedata', JSON.stringify(data));
             localStorage.setItem('inputVal', inputVal);
             var getSearchHistory = localStorage.getItem('inputVal');
 
@@ -148,9 +143,7 @@ var getMovieApi = function () {
 
             searchHistory.textContent = getSearchHistory;
 
-            searchHistoryContainer.appendChild(searchHistory);
-
-        
+            searchHistoryContainer.appendChild(searchHistory);        
         })
 }
 

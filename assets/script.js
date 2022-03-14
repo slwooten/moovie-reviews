@@ -42,18 +42,6 @@ var getYoutubeApi = function (event) {
                 })
                 .then(function (data) {
                     console.log(data);
-
-                    // creates element for youtube video title //
-                    var trailerTitle = document.createElement('h3');
-
-                    // adds class to video title for styling //
-                    trailerTitle.classList.add('yt-title');
-
-                    // sets the text content to the youtube video title //
-                    trailerTitle.textContent = data.title;
-
-                    // places the youtube video title on the page and embeds the video itself //
-                    youtubeResults.appendChild(trailerTitle);
                     youtubeResults.innerHTML += data.html;
 
                     //  saves id to local storage //
@@ -93,29 +81,6 @@ var getYoutubeApi = function (event) {
         })
 
 }
-
-
-
-// var getYoutubeApi = function () {
-
-
-//     var data = { "title": "Official Trailer: Cars (2006)", "author_name": "N.B.", "author_url": "https://www.youtube.com/c/TheFirewhirl", "type": "video", "height": 113, "width": 200, "version": "1.0", "provider_name": "YouTube", "provider_url": "https://www.youtube.com/", "thumbnail_height": 360, "thumbnail_width": 480, "thumbnail_url": "https://i.ytimg.com/vi/SbXIj2T-_uk/hqdefault.jpg", "html": "\u003ciframe width=\u0022200\u0022 height=\u0022113\u0022 src=\u0022https://www.youtube.com/embed/SbXIj2T-_uk?feature=oembed\u0022 frameborder=\u00220\u0022 allow=\u0022accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\u0022 allowfullscreen\u003e\u003c/iframe\u003e" };
-
-//     // creates element for youtube video title //
-//     var trailerTitle = document.createElement('h3');
-
-//     // adds class to video title for styling //
-//     trailerTitle.classList.add('yt-title');
-
-//     // sets the text content to the youtube video title //
-//     trailerTitle.textContent = data.title;
-
-//     // places the youtube video title on the page and embeds the video itself //
-//     youtubeResults.appendChild(trailerTitle);
-//     youtubeResults.innerHTML += data.html;
-
-// };
-
 
 
 // function for fetching movie by title and providing information about it //

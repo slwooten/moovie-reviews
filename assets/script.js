@@ -175,14 +175,26 @@ var getMovieApi = function () {
         })
 }
 
-var getApis = function (event) {
+var getApis = function (event, search) {
+    
+    console.log("hi");
+    window.location.href="/result.html";
     event.preventDefault();
-
     movieResults.innerHTML = '';
     youtubeResults.innerHTML = '';
 
-    getMovieApi();
-    getYoutubeApi();
+    getMovieApi(search);
+    getYoutubeApi(search);
 }
+
+
 // gets apis when search button is clicked //
-searchBtn.addEventListener('click', getApis);
+
+homeSearchBtn.addEventListener('click', function(event){
+    getApis(event, homeSearchEl.textContent)
+});
+
+searchBtn.addEventListener('click', function(event){
+    getApis(event, inputEl.textContent)
+});
+

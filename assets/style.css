@@ -26,6 +26,8 @@ line-height: 40px;
 transition: width 0.4s linear;
 }
 
+
+
 .searchbar:hover > .search_input{
 padding: 0 10px;
 width: 450px;
@@ -48,7 +50,9 @@ justify-content: center;
 align-items: center;
 border-radius: 50%;
 color:#F5F0F6;
+background:#2B4162;
 text-decoration:none;
+border: none;
 }
 
 #main-content {

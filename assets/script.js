@@ -188,7 +188,7 @@ var getApis = function (event) {
 var redirectResults = function (e) {
     e.preventDefault();
     let val = (inputHomeEl.value || '').trim()
-    window.location.href = '/result.html?s=' + val +'&p=donkey&j=fiona';
+    window.location.href = 'result.html';
 }
 // gets apis when search button is clicked //
 if(searchBtn) searchBtn.addEventListener('click', getApis);
